@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useRef } from "react";
+import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer";
+import { VirtualTourPlugin } from "@photo-sphere-viewer/virtual-tour-plugin";
+import "@photo-sphere-viewer/virtual-tour-plugin/index.css";
+
+import firstPhoto from "./assets/1.png";
+import secondPhoto from "./assets/2.png";
+import thirdPhoto from "./assets/3.png";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const instanceRef = useRef(null);
+  const plugins = [[VirtualTourPlugin, { renderMode: "3d" }]];
+
+  const handleReady = (instance) => {
+    instanceRef.current = instance;
+
+    const virtualTour = instanceRef.current.getPlugin(VirtualTourPlugin);
+    virtualTour.setNodes([
+      {
+        id: "1",
+        panorama: firstPhoto,
+        name: "One",
+        links: [{ nodeId: "2", position: { textureX: 100, textureY: 1800 } }],
+        defaultZoomLvl: 0,
+      },
+      {
+        id: "2",
+        panorama: secondPhoto,
+        name: "Two",
+        links: [
+          { nodeId: "1", position: { textureX: 3500, textureY: 1800 } },
+          { nodeId: "3", position: { textureX: 100, textureY: 1800 } },
+        ],
+        defaultZoomLvl: 0,
+      },
+      {
+        id: "3",
+        panorama: thirdPhoto,
+        name: "Three",
+        links: [{ nodeId: "2", position: { textureX: 3500, textureY: 1800 } }],
+        defaultZoomLvl: 0,
+      },
+    ]);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ReactPhotoSphereViewer
+        src={firstPhoto}
+        plugins={plugins}
+        height={"100vh"}
+        width={"100vw"}
+        onReady={handleReady}
+      ></ReactPhotoSphereViewer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,8 +1,19 @@
-# React + Vite
+# google-street-view-clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This is a simple front-end for Google Street view using react-photo-sphere-viewer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Libraries used
+
+- **Vite** (To create react project)
+- **react-photo-sphere-viewer** (To display 360 images)
+  - **Virtual Tour Plugin** (To handle connection between images)
+
+## Future improvement ideas
+
+- Tile 360 images similar to Google Street View
+- Load images from cloud
+- Maintain connection data between image nodes in a database
+- Use GPS mode in virtual tour plugin
+- Add markers in image to denote locations

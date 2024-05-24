@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@photo-sphere-viewer/virtual-tour-plugin": "^5.7.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-photo-sphere-viewer": "^5.0.2-psv5.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
